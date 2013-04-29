@@ -16,10 +16,25 @@ class Twitter :
 
 	# Get the tweets by hashtag
 	def getTweetsByHashtag(self, hashtag) :
-		tweets = self.get_url(self.base_url+hashtag)
 
-		for tweet in tweets :
-			print(self.next_url)
+		# Checking if the next url is set
+		if self.next_url == '' :
+			json_tweets = self.get_url(self.base_url+hashtag)
+		else :
+			json_tweets = self.get_url(self.base_url+self.next_url)
+
+		# Getting the tweets
+		tweets = []
+		for jt in json_tweets :
+			tweet = Tweet(jt)
+
+			# If the tweet is not english, we drop it. Harsh isn't it?
+			if tweet.is_english :
+				tweets.append(tweet)
+
+		# Returning the tweets
+		return tweets
+
 
 
 	# Utilities
@@ -31,6 +46,3 @@ class Twitter :
 		self.next_url = json_data['next_page']
 
 		return json_data['results']
-
-	def dump_tweet(self, json_tweet) :
-		print(json_tweet)

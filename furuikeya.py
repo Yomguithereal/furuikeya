@@ -11,4 +11,20 @@ class Furuikeya :
 
     # Constructor
     def __init__(self) :
-        print('furuikeya')
+
+        # Setting Twitter
+        self.twitter = Twitter()
+
+        # Getting a kigo from the saijiki
+        saijiki = Saijiki()
+        self.kigo = saijiki.getRandomKigo()
+
+    # Creating one Haiku
+    def generateHaiku(self) :
+
+        # Getting the tweets
+        tweets = self.twitter.getTweetsByHashtag(self.kigo)
+
+        # Dumping the tweets
+        for t in tweets :
+            t.dump()

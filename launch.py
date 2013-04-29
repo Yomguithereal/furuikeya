@@ -1,8 +1,7 @@
 #!/usr/bin/python
 
 from furuikeya import Furuikeya
-from twitter import Twitter
 
-t = Twitter()
+f = Furuikeya()
+f.generateHaiku()
 
-t.getTweetsByHashtag('moon')
