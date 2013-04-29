@@ -5,3 +5,6 @@
 
 # Dropping python cache
 __pycache__
+
+# Dropping my TODO file
+TODO.txt

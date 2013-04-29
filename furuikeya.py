@@ -2,6 +2,7 @@
 from haiku import Haiku
 from saijiki import Saijiki
 from twitter import Twitter
+from lib.sylli.sylli import SylModule
 
 # Class Definition
 class Furuikeya :

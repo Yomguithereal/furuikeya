@@ -29,8 +29,7 @@ import os
 import shutil
 import getopt
 import configparser
-import filepath
-import demo
+import lib.sylli.filepath as filepath
 
 VERSION = '0.9.8'
 
