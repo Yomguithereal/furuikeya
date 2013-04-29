@@ -33,7 +33,7 @@ class Furuikeya :
 		self.kigo = saijiki.getRandomKigo()
 
 		# Dev override
-		self.kigo = "moon"
+		self.kigo = "france"
 
 	# Creating one Haiku
 	def generateHaiku(self) :
@@ -47,11 +47,15 @@ class Furuikeya :
 
 		# Checking if the Haiku is complete
 		if self.haiku.is_complete() :
+
+			# Displaying the generated haiku
 			print("\n")
 			print(self.haiku.output())
 			print("\n")
 		else :
-			print('not enough material')
+
+			# Not enough material, we relaunch the function
+			self.generateHaiku()
 
 	# Checking if a possible verse exists within the tweet
 	# If a verse exists, it associates it to the haiku

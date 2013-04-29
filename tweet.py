@@ -29,19 +29,9 @@ class Tweet :
 			# Trimming
 		self.text = self.text.strip()
 
-		# Shortened language test
-		self.language = json_data['iso_language_code']
-		if self.language != 'en' :
-			self.is_english = False
-		else :
-			self.is_english = True
-
 	# Analyse of the tweet to see if it proves good material for a Haiku
+	# Hook for more rules later
 	def isHaikuMaterial(self) :
-
-		# If the tweet is not in English, we drop it. Harsh isn't it?
-		if not self.is_english :
-			return False
 
 		# If the tweet contains more than two hashtags we drop it for being a glory seeker
 		if self.text.count('#') > 10 :

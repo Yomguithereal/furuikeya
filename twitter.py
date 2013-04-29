@@ -11,7 +11,7 @@ class Twitter :
 
 	# Constructor
 	def __init__(self) :
-		self.base_url = 'http://search.twitter.com/search.json?q=%23'
+		self.base_url = 'http://search.twitter.com/search.json?lang=en&rpp=100&q=%23'
 		self.next_url = ''
 
 	# Get the tweets by hashtag
@@ -39,6 +39,7 @@ class Twitter :
 
 	# Utilities
 	def get_url(self, url) :
+		print(url)
 		response = urllib.request.urlopen(url)
 		json_data = json.loads(response.read().decode('utf-8'))
 
