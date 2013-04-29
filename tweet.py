@@ -1,5 +1,5 @@
 # Dependancies
-from string import ascii_letters, digits
+from string import ascii_letters
 import re
 
 # Class Definition
@@ -23,9 +23,9 @@ class Tweet :
 		# Tweet Text
 		self.text = json_data['text']
 			# Removing RT and http links and addressing
-		self.text = re.sub("RT|https?://[^ ]*|@[^ ]*", "", self.text)
+		self.text = re.sub("https?://[^ ]*|@[^ ]*", "", self.text)
 			# Keeping only alphanumeric and such
-		self.text = "".join([ch for ch in self.text if ch in (ascii_letters + digits + ''.join(self.kept_characters))])
+		self.text = "".join([ch for ch in self.text if ch in (ascii_letters + ''.join(self.kept_characters))])
 			# Trimming
 		self.text = self.text.strip()
 
@@ -34,7 +34,11 @@ class Tweet :
 	def isHaikuMaterial(self) :
 
 		# If the tweet contains more than two hashtags we drop it for being a glory seeker
-		if self.text.count('#') > 10 :
+		if self.text.count('#') > 6 :
+			return False
+
+		# If retweet, we drop, just to be sure not to have twice the same verse
+		if self.text.count('RT') > 0 :
 			return False
 
 		return True

@@ -1,6 +1,7 @@
 # Dependancies
 import urllib.request
 import json
+import random
 from tweet import Tweet
 
 # Class Definition
@@ -11,7 +12,12 @@ class Twitter :
 
 	# Constructor
 	def __init__(self) :
-		self.base_url = 'http://search.twitter.com/search.json?lang=en&rpp=100&q=%23'
+
+		# Select a random page
+		page = random.randint(1, 10)
+
+		# Url strings
+		self.base_url = 'http://search.twitter.com/search.json?page='+str(page)+'&include_entities=false&lang=en&rpp=100&q=%23'
 		self.next_url = ''
 
 	# Get the tweets by hashtag
@@ -33,13 +39,14 @@ class Twitter :
 				tweets.append(tweet)
 
 		# Returning the tweets
+		random.shuffle(tweets)
 		return tweets
 
 
 
 	# Utilities
 	def get_url(self, url) :
-		print(url)
+
 		response = urllib.request.urlopen(url)
 		json_data = json.loads(response.read().decode('utf-8'))
 

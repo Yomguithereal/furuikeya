@@ -25,15 +25,15 @@ class Furuikeya :
 		# Setting Twitter
 		self.twitter = Twitter()
 
-		# Setting the haiku
-		self.haiku = Haiku()
-
 		# Getting a kigo from the saijiki
 		saijiki = Saijiki()
 		self.kigo = saijiki.getRandomKigo()
 
 		# Dev override
-		self.kigo = "france"
+		self.kigo = "moon"
+
+		# Setting the haiku
+		self.haiku = Haiku(self.kigo)
 
 	# Creating one Haiku
 	def generateHaiku(self) :
@@ -52,6 +52,9 @@ class Furuikeya :
 			print("\n")
 			print(self.haiku.output())
 			print("\n")
+			print("Kigo : "+self.haiku.kigo)
+			print("\n")
+
 		else :
 
 			# Not enough material, we relaunch the function
@@ -62,7 +65,7 @@ class Furuikeya :
 	def analyseTweet(self, tweet) :
 
 		# A sentence will be until the second hashtag
-		sentence = re.sub("#", "", tweet.text, 1)
+		sentence = re.sub("#", " ", tweet.text, 1)
 		sentence = re.findall("^[^#]{1}[^#,-,;,.]*", sentence)
 
 		# Checking the sentences to find verses
