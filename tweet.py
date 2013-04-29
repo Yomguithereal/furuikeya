@@ -1,5 +1,6 @@
 # Dependancies
 from string import ascii_letters, digits
+import re
 
 # Class Definition
 class Tweet :
@@ -11,9 +12,6 @@ class Tweet :
 		# Kept characters
 		self.kept_characters = [" ", "-", "_", "@", "#"]
 
-		# Removed elements
-		self.removed_elements = ["RT"]
-
 		# If the json_data is given, we run the decode function immediatly
 		if json_data != False :
 			self.decode(json_data)
@@ -22,15 +20,14 @@ class Tweet :
 	# Decode the tweet from its json counterpart
 	def decode(self, json_data) :
 
-		# Tweet Text - Removing any non alphadecimal character
+		# Tweet Text
 		self.text = json_data['text']
+			# Removing RT and http links
+		self.text = re.sub("RT|https?://[^ ]*", "", self.text)
 			# Keeping only alphanumeric and such
 		self.text = "".join([ch for ch in self.text if ch in (ascii_letters + digits + ''.join(self.kept_characters))])
-			# Removing annoying parts
-		for removed_element in self.removed_elements :
-			self.text = self.text.replace(removed_element, '')
 			# Trimming
-			self.text = self.text.strip()
+		self.text = self.text.strip()
 
 		# Shortened language test
 		self.language = json_data['iso_language_code']
@@ -47,7 +44,7 @@ class Tweet :
 			return False
 
 		# If the tweet contains more than two hashtags we drop it for being a glory seeker
-		if self.text.count('#') > 2 :
+		if self.text.count('#') > 10 :
 			return False
 
 		return True

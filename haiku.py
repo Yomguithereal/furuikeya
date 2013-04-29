@@ -34,3 +34,10 @@ class Haiku :
 			return self.first_verse + ' ' + self.kireji + '\n' + self.second_verse + '\n' + self.third_verse
 		else :
 			return self.first_verse + '\n' + self.second_verse + ' ' + self.kireji + '\n' + self.third_verse
+
+	# Checking the completion of the Haiku
+	def is_complete(self) :
+		if self.first_verse != '' and self.second_verse != '' and self.third_verse != '' :
+			return True
+		else :
+			return False
