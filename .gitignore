@@ -1,0 +1,7 @@
+# Furuikeya Gitignore
+
+# Dropping Mac filthy files
+.DS_store
+
+# Dropping python cache
+__pycache__

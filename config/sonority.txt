@@ -1,0 +1,107 @@
+# !0.9.9
+# Please, do not change the line above.
+# Sylli configuration file. It is made of two sections:
+# [General] Contains general options on Syllabification
+# [Sonorities] Specifies the vocabulary (inventory and translation)
+# You can comment off any line by starting a line with a hash #
+
+[General]
+# Allow extrasyllabic consonants as in 's.tra.da'
+# If set to 0 the same output will return 'stra.da'
+# in other words, it will ban consonantal nuclei.
+extra = 1
+
+# Default output form. Possible values are
+# str: returns the string as segments.(input=output)
+# cvg: converts the segments into their natural class,
+# (S=stop, V=vowel, G=glide, etc).
+# cvcv: converts the segments into C(onsonant) or V(owel).
+# For example str: ka.sa; cvg: OV.FV cvcv: CV.CV
+output = str
+
+[Segments]
+# Before the syllabification takes place,
+# a transducer will convert the input into phonological
+# objects. This section specifies the vocabulary to use for the
+# translation, in the form X = z, w, y, where:
+# X is the input form, the one to find in the string to syllabify
+# z is the phonological segment, the one will be printed
+# w is the sonority used by the syllabification algorithm
+# y is the phonological class (printed if output = cvg is chosen)
+# You may add, remove or edit any segment to adapt it to
+# your alphabet or language. For example, if want to
+# add a central /i/ to the vowel inventory
+# you can write something like:
+# I = I, 22, V
+
+# Vowels
+a = a, 22, V
+E = E, 22, V
+0 = O, 22, V
+O = O, 22, V
+e = e, 22, V
+o = o, 22, V
+i = i, 22, V
+u = u, 22, V
+Q = Q, 22, V
+tS = tS, 1, O
+# s is special
+s = s, 21, F
+
+# Approximants
+w = w, 20, G
+j = j, 18, G
+y = j, 18, G
+
+# Sonorants
+L = L, 14, S
+J = J, 14, S
+r = r, 14, S
+l = l, 14, S
+m = m, 14, N
+n = n, 14, N
+
+# Fricatives
+v = v, 7, F
+f = f, 7, F
+h = h, 7, F
+S = S, 7, F
+Z = Z, 7, F
+z = z, 7, F
+
+# Stops
+b = b, 1, O
+d = d, 1, O
+g = g, 1, O
+p = p, 1, O
+t = t, 1, O
+k = k, 1, O
+c = k, 1, O
+
+# Special symbols that always triggers Send (i.e. force syllabic boundaries)
+# Word boundary.
+\# = \#, 99, 0
+# Morpheme boundary.
+# For example, eb+er will be syllabified as eb.er if uncommented.
++ = +, 99, 0
+# Special symbol used in CLIPS, indicates a pause or a major syntactic boundary.
+_ = 0, 99, 0
+
+# Stress or other diacritics symbols (must be specified
+# with sonority = 98. Note that diacritics
+# are attached to preceeding segments.
+# String initial diacritcs are therefore not allowed.
+' = ', 98, 0
+1 = 1, 98, 0
+
+# Those are special symbols used in CLIPS phn layer
+# such as dorsal nasal, schwa, glottal stop etc.
+# CLIPS PHN
+4 = 4, 14, S
+R = R, 14, S
+D = D, 14, S
+M = M, 14, N
+N = N, 14, N
+@ = @, 22, V
+H = H, 1, O
+? = 0, 0, 0
