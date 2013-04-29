@@ -28,8 +28,8 @@ class Twitter :
 		for jt in json_tweets :
 			tweet = Tweet(jt)
 
-			# If the tweet is not english, we drop it. Harsh isn't it?
-			if tweet.is_english :
+			# If the tweet is ok we keep it
+			if tweet.isHaikuMaterial() :
 				tweets.append(tweet)
 
 		# Returning the tweets

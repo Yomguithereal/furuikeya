@@ -16,9 +16,15 @@ class Furuikeya :
         # Setting Twitter
         self.twitter = Twitter()
 
+        # Setting the haiku
+        self.haiku = Haiku()
+
         # Getting a kigo from the saijiki
         saijiki = Saijiki()
         self.kigo = saijiki.getRandomKigo()
+
+        # Dev override
+        self.kigo = "moon"
 
     # Creating one Haiku
     def generateHaiku(self) :

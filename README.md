@@ -1,3 +1,10 @@
-sylli
+Furuikeya Protocol
+==================
 
-FURUIKEYA
+About
+-----
+Furuikeya
+
+Dependencies
+------------
+	*Sylli

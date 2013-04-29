@@ -29,8 +29,7 @@ class Tweet :
 			# Removing annoying parts
 		for removed_element in self.removed_elements :
 			self.text = self.text.replace(removed_element, '')
-
-		# Trimming
+			# Trimming
 			self.text = self.text.strip()
 
 		# Shortened language test
@@ -39,6 +38,19 @@ class Tweet :
 			self.is_english = False
 		else :
 			self.is_english = True
+
+	# Analyse of the tweet to see if it proves good material for a Haiku
+	def isHaikuMaterial(self) :
+
+		# If the tweet is not in English, we drop it. Harsh isn't it?
+		if not self.is_english :
+			return False
+
+		# If the tweet contains more than two hashtags we drop it for being a glory seeker
+		if self.text.count('#') > 2 :
+			return False
+
+		return True
 
 	# Dump the tweet
 	def dump(self) :
