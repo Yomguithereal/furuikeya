@@ -22,8 +22,8 @@ class Tweet :
 
 		# Tweet Text
 		self.text = json_data['text']
-			# Removing RT and http links
-		self.text = re.sub("RT|https?://[^ ]*", "", self.text)
+			# Removing RT and http links and addressing
+		self.text = re.sub("RT|https?://[^ ]*|@[^ ]*", "", self.text)
 			# Keeping only alphanumeric and such
 		self.text = "".join([ch for ch in self.text if ch in (ascii_letters + digits + ''.join(self.kept_characters))])
 			# Trimming

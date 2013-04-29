@@ -31,9 +31,11 @@ class Haiku :
 	# Output method
 	def output(self) :
 		if self.kireji_position == 0 :
-			return self.first_verse + ' ' + self.kireji + '\n' + self.second_verse + '\n' + self.third_verse
+			haiku_string = self.first_verse + ' ' + self.kireji + '\n' + self.second_verse + '\n' + self.third_verse
 		else :
-			return self.first_verse + '\n' + self.second_verse + ' ' + self.kireji + '\n' + self.third_verse
+			haiku_string = self.first_verse + '\n' + self.second_verse + ' ' + self.kireji + '\n' + self.third_verse
+
+		return haiku_string.lower()
 
 	# Checking the completion of the Haiku
 	def is_complete(self) :
