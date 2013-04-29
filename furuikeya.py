@@ -29,9 +29,6 @@ class Furuikeya :
 		saijiki = Saijiki()
 		self.kigo = saijiki.getRandomKigo()
 
-		# Dev override
-		self.kigo = "moon"
-
 		# Setting the haiku
 		self.haiku = Haiku(self.kigo)
 
