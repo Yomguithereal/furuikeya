@@ -13,3 +13,6 @@ TODO.txt
 
 # Dropping personal settings
 settings.yml
+
+# Dropping logs
+/logs

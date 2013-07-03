@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*- 
+
 # -------------------------------------------------------------------
 # Furuikeya Protocol
 # -------------------------------------------------------------------
@@ -10,7 +12,8 @@
 #=============
 import re
 import string
-import nltk.data
+import nltk
+
 from lib.sylli import SylModule
 from colifrapy import Model
 
@@ -50,7 +53,7 @@ class Protocol(Model):
         # Dropping special characters
         lambda t: re.sub(re.compile('[^'+string.printable+']'), '', t)
         # Dropping urls, hashtags and addressing
-        ,lambda t: re.sub(r'\bhttp://.*\b|#|@[^ ]|&.+?;', '', t)
+        ,lambda t: re.sub(r'\bhttp://.*\b|#|@[^ ]?|&.+?;', '', t)
         # Final Strip
         ,lambda t: t.rstrip().strip()
     ]
@@ -74,8 +77,9 @@ class Protocol(Model):
                 tweet = self.cleanTweet(tweet)
 
             # Tokenization
-            print self.sentence_detector.tokenize(tweet)
-            print'\n'
+            print tweet
+            tokens = self.sentence_detector.tokenize(tweet)
+            self.isHaikuMaterial(tokens)
 
     # Methods
     #---------
@@ -90,9 +94,20 @@ class Protocol(Model):
             tweet = cleaner(tweet)
         return tweet
 
+    def isHaikuMaterial(self, tokens):
+        # Check la taille -> split en sous phrase
+        # si c'est bon on remplit et on check la présence du kigo absolue
+        for sentence in tokens:
+            for semi_sentence in sentence.split(','):
+                print nltk.word_tokenize(semi_sentence)
+            
+            # test = reduce(self.countSyllables, nltk.word_tokenize(sentence))
+
+        pass
+
     # Helpers
     #---------
-    def countSyllables(self, word):
+    def countSyllables(self, word, dict=None):
         return len(self.syl.syllabify(word).split('.'))
 
 
