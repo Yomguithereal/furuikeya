@@ -1,0 +1,10 @@
+#-----------------------------
+# Furuikeya English Strings
+#-----------------------------
+
+# Main Strings
+main:
+    title: 'Furuikeya'
+
+twitter:
+    open: 'Starting to collect tweets for kigo : {kigo}//INFO'

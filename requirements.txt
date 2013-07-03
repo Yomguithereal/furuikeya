@@ -1,0 +1,12 @@
+#------------------------
+# Furuikeya Dependancies
+#------------------------
+
+# Libraries
+numpy
+pyyaml
+nltk
+twitter
+
+# Personal CLI Framework
+git+https://github.com/Yomguithereal/colifrapy.git

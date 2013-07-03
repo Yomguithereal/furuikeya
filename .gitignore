@@ -5,6 +5,11 @@
 
 # Dropping python cache
 __pycache__
+*.pyc
+/OLD
 
 # Dropping my TODO file
 TODO.txt
+
+# Dropping personal settings
+settings.yml
