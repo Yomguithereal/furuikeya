@@ -19,7 +19,7 @@ class Haiku:
 
 	# Properties
 	kigo = None
-	kigo_in_verse = False
+	kigo_in_verses = False
 	kireji_position = None
 	kireji = None
 	kireji_list = [';', ',', ' -']
@@ -29,7 +29,7 @@ class Haiku:
 	string = ''
 
 	# Constructor
-	def __init__(self, kigo=None) :
+	def __init__(self, kigo) :
 
 		# Kireji Position
 		#	0 = between first and second verse
@@ -52,32 +52,37 @@ class Haiku:
 	# Setters
 	def _checkKigoInVerse(self, verse):
 		if verse.lower().count(self.kigo) > 0:
-			self.kigo_in_verse = True
-		return self.kigo_in_verse
+			self.kigo_in_verses = True
+		return self.kigo_in_verses
 
 	def _lastVerse(self):
 		return len([i for i in self.verses if i == '']) == 1
 
 	def setLongVerse(self, verse):
+		
+		# Verification
+		if self.verses[1] != '':
+			return False
 		if not self._checkKigoInVerse(verse) and self._lastVerse():
 			return False
-		if self.verses[1] == '':
-			self.verses[1] = verse
-		else:
-			return False
-		return True
+		
+		# Setting
+		self.verses[1] = verse.strip().rstrip()
+
 
 	def setShortVerse(self, verse):
+
+		# Verifications
+		if self.shortVersesComplete():
+			return False
 		if not self._checkKigoInVerse(verse) and self._lastVerse():
 			return False
+
+		# Setting
 		if self.verses[0] == '':
-			self.verses[0] = verse
+			self.verses[0] = verse.strip().rstrip()
 		else:
-			if self.verses[2] == '':
-				self.verses[2] = verse
-			else:
-				return False
-		return True
+			self.verses[2] = verse.strip().rstrip()
 
 
 	# Output method
@@ -94,3 +99,6 @@ class Haiku:
 	# Completion
 	def isComplete(self):
 		return len([i for i in self.verses if i == '']) == 0
+
+	def shortVersesComplete(self):
+		return len([i for i in [self.verses[0], self.verses[2]] if i == '']) == 0

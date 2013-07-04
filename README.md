@@ -5,6 +5,7 @@ About
 -----
 Furuikeya
 
-Dependencies
-------------
-	*Sylli
+I have plans;
+This rain has got to stop
+Over the pond
+(pond)

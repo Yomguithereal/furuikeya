@@ -8,6 +8,9 @@
 
 # Dependancies
 #=============
+import re
+import random
+
 from twitter import Twitter, OAuth
 from colifrapy import Model
 from pprint import pprint
@@ -21,7 +24,7 @@ class TwitterClient(Model):
 	opts = {
 		'lang' : 'en',
 		'result_type' : 'recent',
-		'count' : '50',
+		'count' : '100',
 		'include_entities' : 'false'
 	}
 
@@ -50,8 +53,10 @@ class TwitterClient(Model):
 		search = self.t.search.tweets(**self.opts)
 
 		# Setting the next page
-		self.opts['max_id'] = search['search_metadata']['max_id']
-
+		next_results = re.search(r'max_id=([^&]+)&', search['search_metadata']['next_results'])
+		self.opts['max_id'] = next_results.group(1)
+		
 		# Yielding
+		random.shuffle(search['statuses'])
 		for tweet in search['statuses']:
 			yield tweet['text']

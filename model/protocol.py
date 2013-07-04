@@ -34,7 +34,7 @@ class Protocol(Model):
     verses_offset = 1
 
     sentence_detector = None
-    punctuation_re = r'[“?!.,;:-_/()\[\]{}`"]|\'\''
+    punctuation_re = r'[“?!.,;:\-_/()\[\]{}`"]|\'\'|[0-9]'
 
     # Tweet Filters
     filters = [
@@ -53,7 +53,11 @@ class Protocol(Model):
         # Dropping special characters
         lambda t: re.sub(re.compile('[^'+string.printable+']'), '', t)
         # Dropping urls, hashtags and addressing
-        ,lambda t: re.sub(r'\bhttps?://.*\b|#|@[^ ]?|&.+?;|\*', '', t)
+        ,lambda t: re.sub(r'\bhttps?://.*\b', '', t)
+        # Dropping hashtags and addressing
+        ,lambda t: re.sub(r'#|@[^ ]?|\*', '', t)
+        # Dropping htmlentities
+        ,lambda t: re.sub(r'&.+?;', '', t)
         # Final Strip
         ,lambda t: t.rstrip().strip()
     ]
@@ -106,12 +110,15 @@ class Protocol(Model):
                 counter = 0
 
                 # To words and counting syllables
+                semi_sentence = re.sub(self.punctuation_re, '', semi_sentence)
                 words = nltk.word_tokenize(semi_sentence)
+                
+                # Counting Syllables
                 for word in words:
                     counter += self.countSyllables(word)
 
                 # Keeping Relevant parts
-                if counter >= 4 and counter <=6:
+                if counter >= 4 and counter < 6:
                     self.haiku.setShortVerse(semi_sentence)
                 else:
                     if counter >= 6 and counter  <= 8:
@@ -124,10 +131,7 @@ class Protocol(Model):
     # Helpers
     #---------
     def countSyllables(self, word, dict=None):
-        if re.match(self.punctuation_re, word) is None:
-            return len(self.syl.syllabify(word).split('.'))
-        else:
-            return 0
+        return len(self.syl.syllabify(word).split('.'))
 
 
 

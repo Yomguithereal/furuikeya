@@ -33,7 +33,7 @@ class Controller(Model):
 		# self.saijiki = Saijiki()
 
 		# Calling upon twitter API
-		kigo = 'frog'
+		kigo = 'pond'
 		self.twitter = TwitterClient()
 
 		# Passing kigo and tweets to the protocol
@@ -42,7 +42,9 @@ class Controller(Model):
 			self.log.write('controller:not_enough')
 
 		# Haiku is complete
+		print ''
 		print self.protocol.haiku
-
+		print ''
+		
 	# Methods
     #------------
