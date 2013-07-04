@@ -7,8 +7,11 @@ main:
     title: 'Furuikeya'
 
 twitter:
-    open: 'Initializing Twitter connection//INFO'
+    open: 'Initializing Twitter authentification//DEBUG'
     fetch: 'Fetching tweets for kigo : {kigo}//DEBUG'
 
 controller:
     not_enough: 'Not enough material to finish the haiku with these tweets. Continuing...//WARNING'
+
+saijiki:
+    open: 'Opening Saijiki//DEBUG'

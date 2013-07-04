@@ -22,6 +22,9 @@ class Saijiki(Model):
 	# Constructor
 	def __init__(self):
 
+		# Announcing
+		self.log.write('saijiki:open')
+
 		# Setting the kigo list
 		with open(self.settings.saijiki, 'r') as sf:
 			lines = sf.readlines()

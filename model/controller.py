@@ -17,34 +17,32 @@ from protocol import Protocol
 #=============
 class Controller(Model):
 
-	# Properties
-	twitter = None
-	saijiki = None
-	protocol = None
+    # Properties
+    twitter = None
+    saijiki = None
+    protocol = None
 
-	# Constructor
+    # Constructor
     #------------
-	def __init__(self):
+    def __init__(self):
 
-		# Annoucing
-		self.log.header('main:title')
+        # Annoucing
+        self.log.header('main:title')
 
-		# Registering Dependancies
-		# self.saijiki = Saijiki()
+        # Registering Dependancies
+        # self.saijiki = Saijiki()
+        self.twitter = TwitterClient()
 
-		# Calling upon twitter API
-		kigo = 'pond'
-		self.twitter = TwitterClient()
-
-		# Passing kigo and tweets to the protocol
-		self.protocol = Protocol(kigo)
-		while self.protocol.procede(self.twitter.findTweets(kigo)) is False:
-			self.log.write('controller:not_enough')
-
-		# Haiku is complete
-		print ''
-		print self.protocol.haiku
-		print ''
-		
-	# Methods
+    # Methods
     #------------
+    def generateHaiku(self, kigo):
+        
+        # Passing kigo and tweets to the protocol
+        self.protocol = Protocol(kigo)
+        while self.protocol.procede(self.twitter.findTweets(kigo)) is False:
+            self.log.write('controller:not_enough')
+
+        # Haiku is complete
+        print ''
+        print self.protocol.haiku
+        print ''
