@@ -21,7 +21,7 @@ class TwitterClient(Model):
 
 	# Properties
 	t = None
-	opts = {
+	twopts = {
 		'lang' : 'en',
 		'result_type' : 'recent',
 		'count' : '100',
@@ -49,12 +49,12 @@ class TwitterClient(Model):
 		self.log.write('twitter:fetch', variables={'kigo' : kigo})
 
 		# Options
-		self.opts["q"] = kigo+'%20-RT'
-		search = self.t.search.tweets(**self.opts)
+		self.twopts["q"] = kigo+'%20-RT'
+		search = self.t.search.tweets(**self.twopts)
 
 		# Setting the next page
 		next_results = re.search(r'max_id=([^&]+)&', search['search_metadata']['next_results'])
-		self.opts['max_id'] = next_results.group(1)
+		self.twopts['max_id'] = next_results.group(1)
 		
 		# Yielding
 		random.shuffle(search['statuses'])

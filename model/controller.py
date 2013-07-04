@@ -46,3 +46,7 @@ class Controller(Model):
         print ''
         print self.protocol.haiku
         print ''
+
+    def generateMultipleHaikus(self, kigo, number=1):
+        for i in range(number):
+            self.generateHaiku(kigo)
