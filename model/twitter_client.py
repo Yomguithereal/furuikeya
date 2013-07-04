@@ -28,6 +28,9 @@ class TwitterClient(Model):
 	# Constructor
 	def __init__(self):
 
+		# Announcing
+		self.log.write('twitter:open')
+
 		# Regsitering Oauth
 		self.t = Twitter(auth=OAuth(
 			self.settings.twitter['oauth_token'],
@@ -40,9 +43,15 @@ class TwitterClient(Model):
 	def findTweets(self, kigo):
 
 		# Announcing
-		self.log.write('twitter:open', variables={'kigo' : kigo})
+		self.log.write('twitter:fetch', variables={'kigo' : kigo})
 
+		# Options
 		self.opts["q"] = kigo+'%20-RT'
 		search = self.t.search.tweets(**self.opts)
+
+		# Setting the next page
+		self.opts['max_id'] = search['search_metadata']['max_id']
+
+		# Yielding
 		for tweet in search['statuses']:
-			yield tweet['text'].encode('utf-8', 'ignore')
+			yield tweet['text']

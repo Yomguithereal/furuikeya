@@ -177,7 +177,7 @@ class SylModule:
         # A list of phonological converted objects
         ph_sequence = []
         # remove whitespaces
-        input_string = re.sub("\s+", "", input_string)
+        input_string = re.sub(r"\s+", "", input_string)
         # Manage different tranducers
         if transducer:
             return False

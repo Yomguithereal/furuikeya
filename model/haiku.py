@@ -24,10 +24,12 @@ class Haiku:
 	kireji = None
 	kireji_list = [';', ',', ' -']
 	verses = ['', '', '']
+	short_verses = False
+	long_verse = False
 	string = ''
 
 	# Constructor
-	def __init__(self, kigo="moon") :
+	def __init__(self, kigo=None) :
 
 		# Kireji Position
 		#	0 = between first and second verse
@@ -47,6 +49,37 @@ class Haiku:
 		else:
 			return 'Haiku is not complete'
 
+	# Setters
+	def _checkKigoInVerse(self, verse):
+		if verse.lower().count(self.kigo) > 0:
+			self.kigo_in_verse = True
+		return self.kigo_in_verse
+
+	def _lastVerse(self):
+		return len([i for i in self.verses if i == '']) == 1
+
+	def setLongVerse(self, verse):
+		if not self._checkKigoInVerse(verse) and self._lastVerse():
+			return False
+		if self.verses[1] == '':
+			self.verses[1] = verse
+		else:
+			return False
+		return True
+
+	def setShortVerse(self, verse):
+		if not self._checkKigoInVerse(verse) and self._lastVerse():
+			return False
+		if self.verses[0] == '':
+			self.verses[0] = verse
+		else:
+			if self.verses[2] == '':
+				self.verses[2] = verse
+			else:
+				return False
+		return True
+
+
 	# Output method
 	def output(self) :
 		if self.string.strip() == '':
@@ -60,4 +93,4 @@ class Haiku:
 
 	# Completion
 	def isComplete(self):
-		return not reduce(lambda d,x: x.strip() == '', self.verses)
+		return len([i for i in self.verses if i == '']) == 0

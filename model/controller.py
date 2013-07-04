@@ -17,10 +17,13 @@ from protocol import Protocol
 #=============
 class Controller(Model):
 
+	# Properties
 	twitter = None
 	saijiki = None
 	protocol = None
 
+	# Constructor
+    #------------
 	def __init__(self):
 
 		# Annoucing
@@ -30,8 +33,16 @@ class Controller(Model):
 		# self.saijiki = Saijiki()
 
 		# Calling upon twitter API
+		kigo = 'frog'
 		self.twitter = TwitterClient()
-		tweet_generator = self.twitter.findTweets("frog");
 
 		# Passing kigo and tweets to the protocol
-		self.protocol = Protocol("moon", tweet_generator)
+		self.protocol = Protocol(kigo)
+		while self.protocol.procede(self.twitter.findTweets(kigo)) is False:
+			self.log.write('controller:not_enough')
+
+		# Haiku is complete
+		print self.protocol.haiku
+
+	# Methods
+    #------------

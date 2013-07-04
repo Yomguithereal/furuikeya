@@ -30,13 +30,11 @@ class Protocol(Model):
     #------------
     syl = None
     kigo = None
-    tweets = None
     haiku = None
-
-    verses_length = [5, 7, 5]
     verses_offset = 1
 
     sentence_detector = None
+    punctuation_re = r'[“?!.,;:-_/()\[\]{}`"]|\'\''
 
     # Tweet Filters
     filters = [
@@ -46,6 +44,8 @@ class Protocol(Model):
         ,lambda t: t.strip() != ''
         # Mad Hashtaggers
         ,lambda t: t.count('#') < 4
+        # Dropping tweets with filthy things such as usernames
+        ,lambda t: True if re.search(r'\b\w[0-9_]+\w*\b', t) is None else False
     ]
 
     # Tweet Cleaners
@@ -53,33 +53,35 @@ class Protocol(Model):
         # Dropping special characters
         lambda t: re.sub(re.compile('[^'+string.printable+']'), '', t)
         # Dropping urls, hashtags and addressing
-        ,lambda t: re.sub(r'\bhttp://.*\b|#|@[^ ]?|&.+?;', '', t)
+        ,lambda t: re.sub(r'\bhttps?://.*\b|#|@[^ ]?|&.+?;|\*', '', t)
         # Final Strip
         ,lambda t: t.rstrip().strip()
     ]
 
     # Constructor
     #------------
-    def __init__(self, kigo, tweets=None):
+    def __init__(self, kigo):
         self.syl = SylModule(self.settings.sonorities)
         self.kigo = kigo
-        self.tweets = tweets
-        self.haiku = Haiku()
+        self.haiku = Haiku(kigo)
 
         # Initializing sentence tokenizer
         self.sentence_detector = nltk.data.load(self.settings.pickle)
 
+    def procede(self, tweets):
+
         # Launching Protocol Loop
-        for tweet in self.tweets:
+        for tweet in tweets:
 
             # Filtering and Cleansing
             if self.filterTweet(tweet):
                 tweet = self.cleanTweet(tweet)
 
             # Tokenization
-            print tweet
             tokens = self.sentence_detector.tokenize(tweet)
-            self.isHaikuMaterial(tokens)
+            if self.isHaikuMaterial(tokens):
+                return True
+        return False
 
     # Methods
     #---------
@@ -95,20 +97,37 @@ class Protocol(Model):
         return tweet
 
     def isHaikuMaterial(self, tokens):
-        # Check la taille -> split en sous phrase
-        # si c'est bon on remplit et on check la présence du kigo absolue
+        
+        # Looping through sentences
         for sentence in tokens:
             for semi_sentence in sentence.split(','):
-                print nltk.word_tokenize(semi_sentence)
-            
-            # test = reduce(self.countSyllables, nltk.word_tokenize(sentence))
+                
+                # Counter Init
+                counter = 0
 
-        pass
+                # To words and counting syllables
+                words = nltk.word_tokenize(semi_sentence)
+                for word in words:
+                    counter += self.countSyllables(word)
+
+                # Keeping Relevant parts
+                if counter >= 4 and counter <=6:
+                    self.haiku.setShortVerse(semi_sentence)
+                else:
+                    if counter >= 6 and counter  <= 8:
+                        self.haiku.setLongVerse(semi_sentence)
+
+                if self.haiku.isComplete():
+                    return True
+        return False
 
     # Helpers
     #---------
     def countSyllables(self, word, dict=None):
-        return len(self.syl.syllabify(word).split('.'))
+        if re.match(self.punctuation_re, word) is None:
+            return len(self.syl.syllabify(word).split('.'))
+        else:
+            return 0
 
 
 
