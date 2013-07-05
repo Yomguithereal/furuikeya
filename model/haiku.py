@@ -102,7 +102,7 @@ class Haiku:
 	def output(self) :
 		if self.string.strip() == '':
 			for nb, verse in enumerate(self.verses):
-				self.string += verse
+				self.string += '\t'+verse
 				if nb == self.kireji_position:
 					self.string += self.kireji
 				if nb < 2:

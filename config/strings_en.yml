@@ -5,13 +5,17 @@
 # Main Strings
 main:
     title: 'Furuikeya'
+    end: 'Process Finished. All haikus have been generated.\n//INFO'
 
 twitter:
     open: 'Initializing Twitter authentification//DEBUG'
-    fetch: 'Fetching tweets for kigo : {kigo}//DEBUG'
+    fetch: 'Fetching tweets for kigo : *{kigo}*//DEBUG'
 
 controller:
+    number: 'Starting to fetch {nb} haiku(s)//INFO'
     not_enough: 'Not enough material to finish the haiku with these tweets. Continuing...//WARNING'
+    kigo_not_given: 'Kigo was not given, selecting a random one from the saijiki//INFO'
+    saijiki: 'Starting to read the saijiki//INFO'
 
 saijiki:
     open: 'Opening Saijiki//DEBUG'

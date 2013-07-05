@@ -25,7 +25,9 @@ nltk.data.path[0] = settings.nltk_data
 
 # Launching Controller
 controller = Controller()
-command.opts.kigo = command.opts.kigo.lower()
 
 # Generating haikus
-controller.generateMultipleHaikus(command.opts.kigo, command.opts.number)
+if command.opts.saijiki:
+	controller.generateSaijikiHaikus()
+else:
+	controller.generateMultipleHaikus(command.opts.kigo, command.opts.number)

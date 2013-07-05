@@ -64,19 +64,22 @@ class Protocol(Model):
 
     # Constructor
     #------------
-    def __init__(self, kigo):
+    def __init__(self):
+
+        # Initializing sylli
         self.syl = SylModule(self.settings.sonorities)
-        self.kigo = kigo
 
         # Initializing sentence tokenizer
         self.sentence_detector = nltk.data.load(self.settings.pickle)
 
-        # Initializing haiku
-        self.haiku = Haiku(self.kigo)
+    def procede(self, tweets, kigo):
 
-    def procede(self, tweets):
+        # Kigo
+        self.kigo = kigo
 
         # Reinitializing haiku
+        if self.haiku is None:
+            self.haiku = Haiku(self.kigo)
         if self.haiku.isComplete():
             self.haiku.reinit(self.kigo)
 

@@ -9,6 +9,7 @@
 # Dependancies
 #=============
 import random
+import codecs
 from colifrapy import Model
 
 # Main Class
@@ -26,9 +27,11 @@ class Saijiki(Model):
 		self.log.write('saijiki:open')
 
 		# Setting the kigo list
-		with open(self.settings.saijiki, 'r') as sf:
+		with codecs.open(self.settings.saijiki, 'r') as sf:
 			lines = sf.readlines()
 		self.kigo_list = [i.rstrip() for i in lines if i.rstrip() != '']
+		if len(self.kigo_list) == 0:
+			self.kigo_list.append('moon')
 
 	# Get random kigo
 	def getRandomKigo(self):
