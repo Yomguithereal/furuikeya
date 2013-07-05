@@ -64,7 +64,7 @@ class Controller(Model):
 
         self.log.write('main:end')
 
-    def generateSaijikiHaikus(self):
+    def generateSaijikiHaikus(self, number=1):
 
         # Initializing saijiki
         self.log.write('controller:saijiki')
@@ -75,6 +75,7 @@ class Controller(Model):
 
         # Looping
         for kigo in saijiki.kigo_list:
-            self.generateHaiku(kigo)
+            for i in range(number):
+                self.generateHaiku(kigo)
 
         self.log.write('main:end')

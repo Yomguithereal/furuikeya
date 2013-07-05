@@ -9,7 +9,7 @@ main:
 
 twitter:
     open: 'Initializing Twitter authentification//DEBUG'
-    fetch: 'Fetching tweets for kigo : *{kigo}*//DEBUG'
+    fetch: 'Fetching tweets for kigo : *{kigo}*//INFO'
 
 controller:
     number: 'Starting to fetch {nb} haiku(s)//INFO'

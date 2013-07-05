@@ -28,6 +28,6 @@ controller = Controller()
 
 # Generating haikus
 if command.opts.saijiki:
-	controller.generateSaijikiHaikus()
+	controller.generateSaijikiHaikus(command.opts.number)
 else:
 	controller.generateMultipleHaikus(command.opts.kigo, command.opts.number)
