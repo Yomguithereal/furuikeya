@@ -24,8 +24,6 @@ class Haiku:
 	kireji = None
 	kireji_list = [';', ',', ' -']
 	verses = ['', '', '']
-	short_verses = False
-	long_verse = False
 	string = ''
 
 	# Constructor
@@ -41,6 +39,13 @@ class Haiku:
 
 		# Kigo
 		self.kigo = kigo
+
+	# Reinitialization
+	def reinit(self, kigo):
+		self.__init__(kigo)
+		self.verses = ['', '', '']
+		self.kigo_in_verses = False
+		self.string = ''
 
 	# Printing
 	def __repr__(self):
@@ -58,6 +63,9 @@ class Haiku:
 	def _lastVerse(self):
 		return len([i for i in self.verses if i == '']) == 1
 
+	def _strip(self, verse):
+		return verse.strip().rstrip()
+
 	def setLongVerse(self, verse):
 		
 		# Verification
@@ -67,7 +75,7 @@ class Haiku:
 			return False
 		
 		# Setting
-		self.verses[1] = verse.strip().rstrip()
+		self.verses[1] = self._strip(verse)
 
 
 	def setShortVerse(self, verse):
@@ -80,9 +88,9 @@ class Haiku:
 
 		# Setting
 		if self.verses[0] == '':
-			self.verses[0] = verse.strip().rstrip()
+			self.verses[0] = self._strip(verse)
 		else:
-			self.verses[2] = verse.strip().rstrip()
+			self.verses[2] = self._strip(verse)
 
 
 	# Output method

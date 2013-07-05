@@ -55,7 +55,7 @@ class TwitterClient(Model):
 		# Setting the next page
 		next_results = re.search(r'max_id=([^&]+)&', search['search_metadata']['next_results'])
 		self.twopts['max_id'] = next_results.group(1)
-		
+
 		# Yielding
 		random.shuffle(search['statuses'])
 		for tweet in search['statuses']:

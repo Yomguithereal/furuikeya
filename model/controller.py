@@ -19,8 +19,8 @@ class Controller(Model):
 
     # Properties
     twitter = None
-    saijiki = None
     protocol = None
+    haikus = []
 
     # Constructor
     #------------
@@ -30,7 +30,6 @@ class Controller(Model):
         self.log.header('main:title')
 
         # Registering Dependancies
-        # self.saijiki = Saijiki()
         self.twitter = TwitterClient()
 
     # Methods
@@ -38,15 +37,20 @@ class Controller(Model):
     def generateHaiku(self, kigo):
         
         # Passing kigo and tweets to the protocol
-        self.protocol = Protocol(kigo)
         while self.protocol.procede(self.twitter.findTweets(kigo)) is False:
             self.log.write('controller:not_enough')
 
         # Haiku is complete
+        self.haikus.append(self.protocol.haiku)
         print ''
         print self.protocol.haiku
         print ''
 
     def generateMultipleHaikus(self, kigo, number=1):
+
+        # Initiating protocol
+        self.protocol = Protocol(kigo)
+
+        # Looping
         for i in range(number):
             self.generateHaiku(kigo)

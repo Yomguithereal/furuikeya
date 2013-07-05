@@ -67,12 +67,18 @@ class Protocol(Model):
     def __init__(self, kigo):
         self.syl = SylModule(self.settings.sonorities)
         self.kigo = kigo
-        self.haiku = Haiku(kigo)
 
         # Initializing sentence tokenizer
         self.sentence_detector = nltk.data.load(self.settings.pickle)
 
+        # Initializing haiku
+        self.haiku = Haiku(self.kigo)
+
     def procede(self, tweets):
+
+        # Reinitializing haiku
+        if self.haiku.isComplete():
+            self.haiku.reinit(self.kigo)
 
         # Launching Protocol Loop
         for tweet in tweets:
@@ -81,10 +87,10 @@ class Protocol(Model):
             if self.filterTweet(tweet):
                 tweet = self.cleanTweet(tweet)
 
-            # Tokenization
-            tokens = self.sentence_detector.tokenize(tweet)
-            if self.isHaikuMaterial(tokens):
-                return True
+                # Tokenization
+                tokens = self.sentence_detector.tokenize(tweet)
+                if self.isHaikuMaterial(tokens):
+                    return True
         return False
 
     # Methods
