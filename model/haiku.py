@@ -8,6 +8,7 @@
 
 # Dependancies
 #=============
+import re
 import random
 
 # Main Class
@@ -25,6 +26,8 @@ class Haiku:
 	kireji_list = [';', ',', ' -']
 	verses = ['', '', '']
 	string = ''
+
+	uppercase_re = r'[A-Z]{2,}'
 
 	# Constructor
 	def __init__(self, kigo) :
@@ -64,6 +67,8 @@ class Haiku:
 		return len([i for i in self.verses if i == '']) == 1
 
 	def _strip(self, verse):
+		if re.search(self.uppercase_re, verse) is not None:
+			verse = verse.lower()
 		return verse.strip().rstrip()
 
 	def setLongVerse(self, verse):
