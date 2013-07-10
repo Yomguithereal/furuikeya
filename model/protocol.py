@@ -31,7 +31,6 @@ class Protocol(Model):
     syl = None
     kigo = None
     haiku = None
-    verses_offset = 1
 
     sentence_detector = None
     punctuation_re = r'[“?!.,;:\-_/()\[\]{}`"]|\'\'|[0-9]'
