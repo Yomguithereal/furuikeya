@@ -28,6 +28,7 @@ class Haiku:
 	string = ''
 
 	uppercase_re = r'[A-Z]{2,}'
+	weirdspace_re = r' {2,}'
 
 	# Constructor
 	def __init__(self, kigo) :
@@ -67,8 +68,15 @@ class Haiku:
 		return len([i for i in self.verses if i == '']) == 1
 
 	def _strip(self, verse):
+
+		# CAPS LOCK fools
 		if re.search(self.uppercase_re, verse) is not None:
 			verse = verse.lower()
+
+		# Weird spacing correction
+		verse = re.sub(self.weirdspace_re, ' ', verse)
+
+		# Basic stripping
 		return verse.strip().rstrip()
 
 	def setLongVerse(self, verse):
