@@ -10,6 +10,7 @@
 #=============
 import re
 import random
+import time
 
 from twitter import Twitter, OAuth
 from colifrapy import Model
@@ -44,6 +45,9 @@ class TwitterClient(Model):
 
 	# Find Tweets
 	def findTweets(self, kigo):
+
+		# Pausing to avoid being kicked too fast
+		time.sleep(1)
 
 		# Announcing
 		self.log.write('twitter:fetch', variables={'kigo' : kigo})
