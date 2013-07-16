@@ -25,7 +25,7 @@ This enable haijins to build beautiful litterary networks and canvases from this
 
 For instance, in this famous haiku by Matsuo Bashô and from which I entitled the program :
 
-```sh
+```
 Furuike ya kawazu tobikomu mizu no oto.
 
 The Ancient Pond -
