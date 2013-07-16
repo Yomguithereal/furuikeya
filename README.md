@@ -129,3 +129,5 @@ python furuikeya.py -s/--saijiki -n/--number <N>
 	nltk
 	twitter
 	colifrapy
+
+Furuikeya uses [Sylli](http://sylli.sourceforge.net/install.html) library to count syllables.
