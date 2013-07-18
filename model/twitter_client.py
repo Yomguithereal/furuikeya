@@ -11,6 +11,7 @@
 import re
 import random
 import time
+import sys
 
 from twitter import Twitter, OAuth
 from colifrapy import Model
@@ -57,8 +58,14 @@ class TwitterClient(Model):
 		search = self.t.search.tweets(**self.twopts)
 
 		# Setting the next page
-		next_results = re.search(r'max_id=([^&]+)&', search['search_metadata']['next_results'])
-		self.twopts['max_id'] = next_results.group(1)
+		try:
+			next_results = re.search(r'max_id=([^&]+)&', search['search_metadata']['next_results'])
+			self.twopts['max_id'] = next_results.group(1)
+		except KeyError:
+			self.log.write('twitter:end_results', variables={'kigo' : kigo})
+
+			# TODO : raise exception
+			sys.exit()
 
 		# Yielding
 		random.shuffle(search['statuses'])

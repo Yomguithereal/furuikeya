@@ -10,6 +10,8 @@ main:
 twitter:
     open: 'Initializing Twitter authentification//DEBUG'
     fetch: 'Fetching tweets for kigo : *{kigo}*//INFO'
+    end_results: 'End of Results for kigo : *{kigo}*//ERROR'
+    kicked: 'Kicked by Twitter API//ERROR'
 
 controller:
     number: 'Starting to fetch {nb} haiku(s)//INFO'
@@ -19,3 +21,4 @@ controller:
 
 saijiki:
     open: 'Opening Saijiki//DEBUG'
+    empty: 'Saijiki is empty. Switching to the almighty kigo : *moon*//WARNING'

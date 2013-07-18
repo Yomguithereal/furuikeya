@@ -31,6 +31,7 @@ class Saijiki(Model):
 			lines = sf.readlines()
 		self.kigo_list = [i.rstrip() for i in lines if i.rstrip() != '']
 		if len(self.kigo_list) == 0:
+			self.log.write('saijiki:empty')
 			self.kigo_list.append('moon')
 
 	# Get random kigo

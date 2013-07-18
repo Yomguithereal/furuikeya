@@ -31,6 +31,8 @@ class Controller(Model):
 
         # Registering Dependancies
         self.twitter = TwitterClient()
+        self.saijiki = Saijiki()
+        
 
     # Methods
     #------------
@@ -51,8 +53,7 @@ class Controller(Model):
         # Checking kigo
         if kigo is None:
             self.log.write('controller:kigo_not_given')
-            saijiki = Saijiki()
-            kigo = saijiki.getRandomKigo()
+            kigo = self.saijiki.getRandomKigo()
 
         # Initiating protocol
         self.protocol = Protocol()
@@ -68,13 +69,12 @@ class Controller(Model):
 
         # Initializing saijiki
         self.log.write('controller:saijiki')
-        saijiki = Saijiki()
 
         # Initiating protocol
         self.protocol = Protocol()
 
         # Looping
-        for kigo in saijiki.kigo_list:
+        for kigo in self.saijiki.kigo_list:
             for i in range(number):
                 self.generateHaiku(kigo)
 
