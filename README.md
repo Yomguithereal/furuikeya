@@ -67,9 +67,9 @@ The claim of the furuikeya program is not to convey that litterature can be proc
 furuikeya is just to communicate a reflexion about poetry and litterature as a whole.
 
 This being said, one has to know that the furuikeya program is able to produce a grammatically correct haiku
-every 20 tries and gives a aesthetically correct one every 50. The intervention of a human is still needed to
+every 20 tries and gives a vaguely aesthetically correct one every 50. The intervention of a human is still needed to
 determine which ones are good and which ones are not. This is therefore a reflexion about choice and serendipity in
-litterature rather than the annihilation of artistic creativity.
+litterature rather than an attempt at the annihilation of artistic creativity.
 
 ##The Saijiki
 A saijiki, in Japanese, is an index of the most common kigos used in haikus.
