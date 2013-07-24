@@ -3,6 +3,8 @@
 ##About
 Furuikeya is a small python program whose goal is to generate haikus from twitter API 1.1.
 
+Some of the best haikus produced by the program are published on Twitter by [@FuruikeyaBot](https://twitter.com/FuruikeyaBot).
+
 ##The Haiku
 What is a [Haiku](http://en.wikipedia.org/wiki/Haiku)?
 
@@ -119,7 +121,6 @@ python furuikeya.py -s/--saijiki
 # Generating <N> haikus per kigo in saijiki
 python furuikeya.py -s/--saijiki -n/--number <N>
 ```
-
 ##Dependencies
 	
 	python 2.7
