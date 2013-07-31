@@ -10,8 +10,8 @@ main:
 twitter:
     open: 'Initializing Twitter authentification//DEBUG'
     fetch: 'Fetching tweets for kigo : *{kigo}*//INFO'
-    end_results: 'End of Results for kigo : *{kigo}*//ERROR'
-    kicked: 'Kicked by Twitter API//ERROR'
+    end_results: 'End of Results for kigo : *{kigo}*//FATAL'
+    kicked: 'Kicked by Twitter API//FATAL'
 
 controller:
     number: 'Starting to fetch {nb} haiku(s)//INFO'

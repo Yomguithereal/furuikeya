@@ -64,9 +64,6 @@ class TwitterClient(Model):
 		except KeyError:
 			self.log.write('twitter:end_results', variables={'kigo' : kigo})
 
-			# TODO : raise exception
-			sys.exit()
-
 		# Yielding
 		random.shuffle(search['statuses'])
 		for tweet in search['statuses']:

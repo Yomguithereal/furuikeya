@@ -9,4 +9,4 @@ nltk
 twitter
 
 # Personal CLI Framework
-git+https://github.com/Yomguithereal/colifrapy.git
+colifrapy
