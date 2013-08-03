@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*- 
+# -*- coding: utf-8 -*-
 
 # -------------------------------------------------------------------
 # Furuikeya Command Line Hub
@@ -12,22 +12,29 @@
 # Dependancies
 #=============
 import nltk.data
-from colifrapy import Settings, Commander
+from colifrapy import Colifrapy
 from model.controller import Controller
 
-# Loading Colifrapy
-settings = Settings()
-settings.load()
-command = Commander()
 
-# Verifying nltk resources
-nltk.data.path[0] = settings.nltk_data
+# Main Class
+#=============
+class Furuikeya(Colifrapy):
 
-# Launching Controller
-controller = Controller()
+	def launch(self):
 
-# Generating haikus
-if command.opts.saijiki:
-	controller.generateSaijikiHaikus(command.opts.number)
-else:
-	controller.generateMultipleHaikus(command.opts.kigo, command.opts.number)
+		# Verifying nltk resources
+		nltk.data.path[0] = self.settings.nltk_data
+
+		# Determining action
+		if self.opts.saijiki:
+			self.controller.generateSaijikiHaikus(self.opts.number)
+		else:
+			self.controller.generateMultipleHaikus(self.opts.kigo, self.opts.number)
+
+
+
+# Launching
+#===========
+if __name__ == '__main__':
+    hub = Furuikeya(Controller)
+    hub.launch()

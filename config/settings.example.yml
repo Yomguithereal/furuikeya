@@ -9,11 +9,15 @@
 # Basic Informations
 version: 'Furuikeya 0.1'
 description: 'Furuikeya is a procedural protocol designed to create haikus from Twitter.'
-strings: 'config/strings_en.yml'
-arguments: 
+arguments:
 - [ ['-k', '--kigo'], {'help' : 'the kigo of the haiku to generate'} ]
 - [ ['-n', '--number'], {'type' : 'int', 'help' : 'haikus to generate', 'default': '1'} ]
 - [ ['-s', '--saijiki'], {'action' : 'store_true'} ]
+
+# Logger Settings
+logger:
+    strings: 'config/strings_en.yml'
+    flavor: 'default'
 
 # Generic Settings
 settings:
