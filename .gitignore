@@ -2,6 +2,8 @@
 
 # Dropping Mac filthy files
 .DS_store
+haikus.txt
+senryus.txt
 
 # Dropping python cache
 __pycache__
@@ -16,6 +18,3 @@ settings.yml
 
 # Dropping logs
 /logs
-
-haikus.txt
-senryus.txt

@@ -140,6 +140,3 @@ class Protocol(Model):
     #---------
     def countSyllables(self, word, dict=None):
         return len(self.syl.syllabify(word).split('.'))
-
-
-
