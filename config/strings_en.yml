@@ -9,12 +9,12 @@ main:
 
 twitter:
     open: 'Initializing Twitter authentification//DEBUG'
-    fetch: 'Fetching tweets for kigo : *{kigo}*//INFO'
-    end_results: 'End of Results for kigo : *{kigo}*//ERROR'
+    fetch: 'Fetching tweets for kigo : *{{kigo}}*//INFO'
+    end_results: 'End of Results for kigo : *{{kigo}}*//ERROR'
     kicked: 'Kicked by Twitter API//ERROR'
 
 controller:
-    number: 'Starting to fetch {nb} haiku(s)//INFO'
+    number: 'Starting to fetch {{nb}} haiku(s)//INFO'
     not_enough: 'Not enough material to finish the haiku with these tweets. Continuing...//WARNING'
     kigo_not_given: 'Kigo was not given, selecting a random one from the saijiki//INFO'
     saijiki: 'Starting to read the saijiki//INFO'
