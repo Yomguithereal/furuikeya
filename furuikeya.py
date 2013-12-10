@@ -20,16 +20,16 @@ from model.controller import Controller
 #=============
 class Furuikeya(Colifrapy):
 
-	def launch(self):
+    def launch(self):
 
-		# Verifying nltk resources
-		nltk.data.path[0] = self.settings.nltk_data
+        # Verifying nltk resources
+        nltk.data.path[0] = self.settings.nltk_data
 
-		# Determining action
-		if self.opts.saijiki:
-			self.controller.generateSaijikiHaikus(self.opts.number)
-		else:
-			self.controller.generateMultipleHaikus(self.opts.kigo, self.opts.number)
+        # Determining action
+        if self.opts.saijiki:
+            self.controller.generateSaijikiHaikus(self.opts.number)
+        else:
+            self.controller.generateMultipleHaikus(self.opts.kigo, self.opts.number)
 
 
 
