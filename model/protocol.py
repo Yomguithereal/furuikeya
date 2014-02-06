@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*- 
-
 # -------------------------------------------------------------------
 # Furuikeya Protocol
 # -------------------------------------------------------------------
@@ -8,7 +7,7 @@
 #   Author : PLIQUE Guillaume
 #   Version : 1.0
 
-# Dependancies
+# Dependencies
 #=============
 import re
 import string

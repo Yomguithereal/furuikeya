@@ -6,7 +6,7 @@
 #   Author : PLIQUE Guillaume
 #   Version : 1.0
 
-# Dependancies
+# Dependencies
 #=============
 import re
 import random
@@ -58,7 +58,6 @@ class TwitterClient(Model):
         search = self.t.search.tweets(**self.twopts)
 
         # Setting the next page
-        pprint(search['search_metadata'])
         try:
             next_results = re.search(r'max_id=(.*?)&', search['search_metadata']['next_results'])
             self.twopts['max_id'] = next_results.group(1)

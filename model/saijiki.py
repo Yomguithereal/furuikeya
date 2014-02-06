@@ -6,7 +6,7 @@
 #   Author : PLIQUE Guillaume
 #   Version : 1.0
 
-# Dependancies
+# Dependencies
 #=============
 import random
 import codecs

@@ -6,7 +6,7 @@
 #   Author : PLIQUE Guillaume
 #   Version : 1.0
 
-# Dependancies
+# Dependencies
 #=============
 from colifrapy import Model
 from twitter_client import TwitterClient
@@ -29,7 +29,7 @@ class Controller(Model):
         # Annoucing
         self.log.header('main:title')
 
-        # Registering Dependancies
+        # Registering Dependencies
         self.twitter = TwitterClient()
         self.saijiki = Saijiki()
         

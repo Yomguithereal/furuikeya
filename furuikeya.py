@@ -1,6 +1,5 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-
 # -------------------------------------------------------------------
 # Furuikeya Command Line Hub
 # -------------------------------------------------------------------
@@ -9,7 +8,7 @@
 #   Author : PLIQUE Guillaume
 #   Version : 1.0
 
-# Dependancies
+# Dependencies
 #=============
 import nltk.data
 from colifrapy import Colifrapy
