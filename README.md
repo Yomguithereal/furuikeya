@@ -125,7 +125,6 @@ python furuikeya.py -s/--saijiki -n/--number <N>
 	
 	python 2.7
 	sylli
-	numpy
 	pyyaml
 	nltk
 	twitter
