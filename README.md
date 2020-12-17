@@ -1,23 +1,23 @@
-#Furuikeya Protocol
+# Furuikeya Protocol
 
-##About
+## About
 Furuikeya is a small python program whose goal is to generate haikus from twitter API 1.1.
 
 Some of the best haikus produced by the program are published on Twitter by [@FuruikeyaBot](https://twitter.com/FuruikeyaBot).
 
-##The Haiku
+## The Haiku
 What is a [Haiku](http://en.wikipedia.org/wiki/Haiku)?
 
 A haiku is a Japanese short poem and consist of three structural criteria:
 
-###Verses
+### Verses
 Three verses : a short one of five syllables, a long one of seven syllables and finally another short one of five syllables.
 The final structure of the poem is therefore 5/7/5.
 
-###Kireji
+### Kireji
 A kireji, or cutting word, whose aim is to divide the poem into two parts. A haiku is therefore often considered as a 12/5 or 5/12 syllables composition.
 
-###Kigo
+### Kigo
 Finally, a kigo, or season word, whose aim is to symbolize the season defining the ambiance of the poem.
 
 One fact, which is seldom known by occidental people, is that haijins (haiku poets) using a particular kigo
@@ -38,14 +38,14 @@ Water's Sound.
 ```
 the kigo is kawazu, an ancient word meaning 'frog' and symbolizing spring.
 
-##Concept
+## Concept
 Hence, the main idea behind furuikeya is to consider Twitter's hashtags as an equivalent concept to the kigo.
 Indeed, using a hashtag in a tweet will indicate which themes you are supposed to evoke within it and does
 link it to every other tweet using the same one.
 
 Let's use it to generate haikus then.
 
-##Protocol
+## Protocol
 How does furuikeya work technically?
 
 First of all, the program must be fed with a kigo. "Moon", for instance.
@@ -64,7 +64,7 @@ become a verse.
 
 Once the haiku is finished, it is outputted by the program.
 
-##Philosophy
+## Philosophy
 The claim of the furuikeya program is not to convey that litterature can be procedurally generated. On the contrary, the aim of
 furuikeya is just to communicate a reflexion about poetry and litterature as a whole.
 
@@ -73,13 +73,13 @@ every 20 tries and gives a vaguely aesthetically correct one every 50. The inter
 determine which ones are good and which ones are not. This is therefore a reflexion about choice and serendipity in
 litterature rather than an attempt at the annihilation of artistic creativity.
 
-##The Saijiki
+## The Saijiki
 A saijiki, in Japanese, is an index of the most common kigos used in haikus.
 
 In furuikeya, a file ('config/saijiki.txt') symbolizes your personal saijiki in which you can write
 a kigo per line. This file can be used afterwards by the program to batch generate haikus.
 
-##Installation
+## Installation
 To install furuikeya, simply clone it into the desired directory and the download its dependencies.
 (Be advised that you should use a virtualenv and install the dependencies within it.)
 
@@ -100,7 +100,7 @@ twitter:
     oauth_secret: 'YOUR_OAUTH_SECRET'
 ```
 
-##Usage
+## Usage
 
 ```sh
 # Generating one haiku with a random kigo from the saijiki
@@ -121,7 +121,7 @@ python furuikeya.py -s/--saijiki
 # Generating <N> haikus per kigo in saijiki
 python furuikeya.py -s/--saijiki -n/--number <N>
 ```
-##Dependencies
+## Dependencies
 	
 	python 2.7
 	sylli
